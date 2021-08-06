@@ -43,7 +43,7 @@ You should see in your terminal a message indicating that the server is listenin
 4. Sign the message with your Wallet:
     ![Use the Wallet to sign a message](pic/post_message.png)
     
-    In order to post signature , i add to generate legacy address as it was by default sigwit. I following instructions from following blog: https://bitcointalk.org/index.php?topic=5338687.0
+    In order to post signature , I generate legacy address as default wallet in electrum is sigwit. I followed instructions from this blog: https://bitcointalk.org/index.php?topic=5338687.0
     
     Message in Postman:
 ```json
@@ -70,4 +70,4 @@ You should see in your terminal a message indicating that the server is listenin
 ```
 
 6. Retrieve Stars owned by me
-    ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>]()
+    ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>](pic/get_wallet_star_postman.png)
