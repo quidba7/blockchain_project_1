@@ -37,6 +37,7 @@ class Blockchain {
         if( this.height === -1){
             let block = new BlockClass.Block({data: 'Genesis Block'});
             await this._addBlock(block);
+            this.height = 0;
         }
     }
 
@@ -44,8 +45,9 @@ class Blockchain {
      * Utility method that return a Promise that will resolve with the height of the chain
      */
     getChainHeight() {
+        let self = this;
         return new Promise((resolve, reject) => {
-            resolve(this.height);
+            resolve(self.height);
         });
     }
 
@@ -66,7 +68,7 @@ class Blockchain {
         return new Promise(async (resolve, reject) => {
             // we use class method to make sure we have at least 1 block in the chain
             let chainHeight = await self.getChainHeight();
-            if (chainHeight > 0) {
+            if (chainHeight >= 0) {
                 // define a variable with height of bloc at the chain position height - 1
                 let prevBlockHash = self.chain[self.chain.length - 1].hash;
 
@@ -80,7 +82,9 @@ class Blockchain {
                 block.hash = SHA256(JSON.stringify(block)).toString();
 
                 // and the height
+                let height_length = self.chain.length;
                 block.height = self.chain.length;
+                self.height = block.height;
             }
             // push the block to the blockchain
             resolve(self.chain.push(block));
@@ -192,28 +196,20 @@ class Blockchain {
      * Remember the star should be returned decoded.
      * @param {*} address 
      */
-    getStarsByWalletAddress (address) {
+     getStarsByWalletAddress(address) {
         let self = this;
         let stars = [];
-        return new Promise((resolve, reject) => {
-            // loop through self.chain block elements until we have same wallet value
-            let i = 0;
-            do {
-                i = i + 1;
-                // we decode the block
-                let block = self.chain[i];
-
-                // wait that getdata is resolved
-                blockData = await block.getBData();
-
-                // now we check if we have the same address as parameter 
-                if (blockData.owner ===address) {
-                    // we push to the star array
-                    stars.push(blockData);
-                }
-            } while (i < self.chain.length+1);
-            resolve(stars);
-            reject(new Error('No stars for the given wallet address'));
+        return new Promise(async (resolve, reject) => {
+          for (const block of self.chain) {
+            try {
+              const blockData = await block.getBData()
+              if (blockData.owner === address) { stars.push(blockData) }
+            }
+            catch(e) {
+              console.log(e)
+            }
+          }
+          resolve(stars)
         });
     }
 
