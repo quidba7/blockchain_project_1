@@ -1,7 +1,7 @@
-# Private Blockchain Application
+# Description of the project 1: Private Blockchain Application
 
-You are starting your journey as a Blockchain Developer, this project allows you to demonstrate
-that you are familiarized with the fundamentals concepts of a Blockchain platform.
+As a student of the Udacity Nanodegree program, I am starting my journey as a Blockchain Developer, this project allows me to demonstrate
+that I am familiarized with the fundamentals concepts of a Blockchain platform.
 Concepts like:
     - Block
     - Blockchain
@@ -9,13 +9,10 @@ Concepts like:
     - Blockchain Identity
     - Proof of Existance
 
-Are some of the most important components in the Blockchain Framework that you will need to describe and also
-why not? Implement too.
+In this project I will have a boilerplate code with a REST Api already setup to expose some of the functionalities
+I will implement in my private blockchain.
 
-In this project you will have a boilerplate code with a REST Api already setup to expose some of the functionalities
-you will implement in your private blockchain.
-
-## What tools or technologies you will use to create this application?
+## Dependencies
 
 - Some of the libraries or npm modules you will use are:
     - "bitcoinjs-lib": "^4.0.3",
@@ -29,8 +26,7 @@ you will implement in your private blockchain.
 
 ## How to test your application functionalities?
 
-To test your application I recommend you to use POSTMAN, this tool will help you to make the requests to the API.
-Always is useful to debug your code see what is happening in your algorithm, so I will let you this video for you to check on how to do it >https://www.youtube.com/watch?v=6cOsxaNC06c . Try always to debug your code to understand what you are doing.
+Using POSTMAN and debug code using VSCode.
 
 1. Run your application using the command `node app.js`
 You should see in your terminal a message indicating that the server is listening in port 8000:
@@ -38,8 +34,12 @@ You should see in your terminal a message indicating that the server is listenin
 
 2. To make sure your application is working fine and it creates the Genesis Block you can use POSTMAN to request the Genesis block:
     ![Request: http://localhost:8000/block/0 ]()
+
+    This command is probably outdated so I used instead ![Request: http://localhost:8000/block/height/0 ]()
+
 3. Make your first request of ownership sending your wallet address:
     ![Request: http://localhost:8000/requestValidation ]()
+
 4. Sign the message with your Wallet:
     ![Use the Wallet to sign a message](pic/post_message.png)
     
@@ -71,3 +71,33 @@ You should see in your terminal a message indicating that the server is listenin
 
 6. Retrieve Stars owned by me
     ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>](pic/get_wallet_star_postman.png)
+
+    Message in postman
+```json
+    [
+        {
+            "star": {
+                "dec": "68Â° 52' 56.9",
+                "ra": "16h 29m 1.0s",
+                "story": "Testing the story 2"
+            },
+            "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
+        },
+        {
+            "star": {
+                "dec": "68Â° 52' 56.9",
+                "ra": "16h 29m 1.0s",
+                "story": "Testing the story 2"
+            },
+            "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
+        },
+        {
+            "star": {
+                "dec": "68Â° 52' 56.9",
+                "ra": "16h 29m 1.0s",
+                "story": "Testing the story 2"
+            },
+            "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
+        }
+    ]
+```

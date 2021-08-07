@@ -73,7 +73,7 @@ class Blockchain {
                 let prevBlockHash = self.chain[self.chain.length - 1].hash;
 
                 // get the previous block hash and asign it to the block
-                block.prevBlockHash = prevBlockHash;
+                block.previousBlockHash = prevBlockHash;
 
                 // assign timestamp when block was added to the blockchain
                 block.time = new Date().getTime().toString().slice(0,-3);
@@ -82,7 +82,6 @@ class Blockchain {
                 block.hash = SHA256(JSON.stringify(block)).toString();
 
                 // and the height
-                let height_length = self.chain.length;
                 block.height = self.chain.length;
                 self.height = block.height;
             }
