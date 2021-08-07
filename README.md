@@ -35,69 +35,83 @@ You should see in your terminal a message indicating that the server is listenin
 2. To make sure your application is working fine and it creates the Genesis Block you can use POSTMAN to request the Genesis block:
     ![Request: http://localhost:8000/block/0 ]()
 
-    This command is probably outdated so I used instead ![Request: http://localhost:8000/block/height/0 ]()
+    This command is probably outdated so I used instead ![Request: http://localhost:8000/block/height/0 ](https://github.com/quidba7/blockchain_project_1/blob/main/pic/get_block_height.png)
+
+    Message in Postman:
+    ```json
+    {
+        "hash": null,
+        "height": 0,
+        "body": "7b2264617461223a2247656e6573697320426c6f636b227d",
+        "time": 0,
+        "previousBlockHash": null
+    }   
+    ```
 
 3. Make your first request of ownership sending your wallet address:
-    ![Request: http://localhost:8000/requestValidation ]()
+    ![Request: http://localhost:8000/requestValidation ](https://github.com/quidba7/blockchain_project_1/blob/main/pic/post_message.PNG)
 
 4. Sign the message with your Wallet:
-    ![Use the Wallet to sign a message](pic/post_message.png)
+    ![Use the Wallet to sign a message](https://github.com/quidba7/blockchain_project_1/blob/main/pic/signature.png)
     
     In order to post signature , I generate legacy address as default wallet in electrum is sigwit. I followed instructions from this blog: https://bitcointalk.org/index.php?topic=5338687.0
     
     Message in Postman:
-```json
-    {
-        "address":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
-    }
-```
+
+    ```json
+        {
+            "address":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
+        }
+    ```
 
 5. Submit your Star
-     ![Request: http://localhost:8000/submitstar](pic/postStar_postman.png) (pic/postStar_debug.png)
+     ![Request: http://localhost:8000/submitstar](https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_postman.png) (pic/postStar_debug.png)
 
-    Message in postman
-```json
-    {
-        "address":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn",
-        "signature":"HwXgZus8bwThx8Jj7hioYtEx9MmY6aLwUbeASYq+FMH8bv4umO8JxRWB5suut1FPetNe0a/m9nYFtk5Hgt9Kmqs=",
-        "message":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn: 1628155274:startRegistry",
-        "star": {
-            "dec": "68° 52' 56.9",
-            "ra": "16h 29m 1.0s",
-            "story": "Testing the story 2"
-		}
-    }
-```
+    Message in postman:
+
+    ```json
+        {
+            "address":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn",
+            "signature":"HwXgZus8bwThx8Jj7hioYtEx9MmY6aLwUbeASYq+FMH8bv4umO8JxRWB5suut1FPetNe0a/m9nYFtk5Hgt9Kmqs=",
+            "message":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn: 1628155274:startRegistry",
+            "star": {
+                "dec": "68° 52' 56.9",
+                "ra": "16h 29m 1.0s",
+                "story": "Testing the story 2"
+            }
+        }
+    ```
 
 6. Retrieve Stars owned by me
-    ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>](pic/get_wallet_star_postman.png)
+    ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>](https://github.com/quidba7/blockchain_project_1/blob/main/pic/get_wallet_star_postman.png)
 
-    Message in postman
-```json
-    [
-        {
-            "star": {
-                "dec": "68Â° 52' 56.9",
-                "ra": "16h 29m 1.0s",
-                "story": "Testing the story 2"
+    Message in postman:
+
+    ```json
+        [
+            {
+                "star": {
+                    "dec": "68Â° 52' 56.9",
+                    "ra": "16h 29m 1.0s",
+                    "story": "Testing the story 2"
+                },
+                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
             },
-            "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
-        },
-        {
-            "star": {
-                "dec": "68Â° 52' 56.9",
-                "ra": "16h 29m 1.0s",
-                "story": "Testing the story 2"
+            {
+                "star": {
+                    "dec": "68Â° 52' 56.9",
+                    "ra": "16h 29m 1.0s",
+                    "story": "Testing the story 2"
+                },
+                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
             },
-            "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
-        },
-        {
-            "star": {
-                "dec": "68Â° 52' 56.9",
-                "ra": "16h 29m 1.0s",
-                "story": "Testing the story 2"
-            },
-            "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
-        }
-    ]
-```
+            {
+                "star": {
+                    "dec": "68Â° 52' 56.9",
+                    "ra": "16h 29m 1.0s",
+                    "story": "Testing the story 2"
+                },
+                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
+            }
+        ]
+    ```
