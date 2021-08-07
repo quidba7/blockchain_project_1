@@ -35,7 +35,7 @@ You should see in your terminal a message indicating that the server is listenin
 2. To make sure your application is working fine and it creates the Genesis Block you can use POSTMAN to request the Genesis block:
     ![Request: http://localhost:8000/block/0 ]()
 
-    This command is probably outdated so I used instead ![Request: http://localhost:8000/block/height/0 ](https://github.com/quidba7/blockchain_project_1/blob/main/pic/get_block_height.png)
+    This command is probably outdated so I used instead ![Request: http://localhost:8000/block/height/0 ](https://github.com/quidba7/blockchain_project_1/blob/main/pic/get_block_height.PNG)
 
     Message in Postman:
     ```json
@@ -52,7 +52,7 @@ You should see in your terminal a message indicating that the server is listenin
     ![Request: http://localhost:8000/requestValidation ](https://github.com/quidba7/blockchain_project_1/blob/main/pic/post_message.PNG)
 
 4. Sign the message with your Wallet:
-    ![Use the Wallet to sign a message](https://github.com/quidba7/blockchain_project_1/blob/main/pic/signature.png)
+    ![Use the Wallet to sign a message](https://github.com/quidba7/blockchain_project_1/blob/main/pic/signature.PNG)
     
     In order to post signature , I generate legacy address as default wallet in electrum is sigwit. I followed instructions from this blog: https://bitcointalk.org/index.php?topic=5338687.0
     
@@ -65,7 +65,7 @@ You should see in your terminal a message indicating that the server is listenin
     ```
 
 5. Submit your Star
-     ![Request: http://localhost:8000/submitstar](https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_postman.png) (pic/postStar_debug.png)
+     ![Request: http://localhost:8000/submitstar](https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_postman.PNG) (https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_debug.PNG)
 
     Message in postman:
 
@@ -83,7 +83,7 @@ You should see in your terminal a message indicating that the server is listenin
     ```
 
 6. Retrieve Stars owned by me
-    ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>](https://github.com/quidba7/blockchain_project_1/blob/main/pic/get_wallet_star_postman.png)
+    ![Request: http://localhost:8000/blocks/<WALLET_ADDRESS>](https://github.com/quidba7/blockchain_project_1/blob/main/pic/get_wallet_star_postman.PNG)
 
     Message in postman:
 
