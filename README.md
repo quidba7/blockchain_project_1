@@ -65,7 +65,7 @@ You should see in your terminal a message indicating that the server is listenin
     ```
 
 5. Submit your Star
-     ![Request: http://localhost:8000/submitstar](https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_postman.PNG) (https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_debug.PNG)
+     ![Request: http://localhost:8000/submitstar](https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_postman.PNG) ![VScode:](https://github.com/quidba7/blockchain_project_1/blob/main/pic/postStar_debug.PNG)
 
     Message in postman:
 
