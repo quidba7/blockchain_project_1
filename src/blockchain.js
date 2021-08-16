@@ -74,20 +74,30 @@ class Blockchain {
 
                 // get the previous block hash and asign it to the block
                 block.previousBlockHash = prevBlockHash;
+            } 
+        
+            // assign timestamp when block was added to the blockchain
+            block.time = new Date().getTime().toString().slice(0,-3);
+            block.height = self.chain.length;
 
-                // assign timestamp when block was added to the blockchain
-                block.time = new Date().getTime().toString().slice(0,-3);
+            // create the block hash
+            block.hash = SHA256(JSON.stringify(block)).toString();
 
-                // create the block hash
-                block.hash = SHA256(JSON.stringify(block)).toString();
-
-                // and the height
-                block.height = self.chain.length;
-                self.height = block.height;
-            }
             // push the block to the blockchain
-            resolve(self.chain.push(block));
-            reject('err');
+            self.chain.push(block);
+
+            // and update the height of the chain
+            self.height = block.height;
+
+            // validate the chain after pushing the block
+            let chain_errors = await self.validateChain();
+
+            if (chain_errors.length === 0) {
+                resolve(chain_errors);
+                //reject(chain_errors);
+            } else { 
+                resolve("Error found in the blockchain");
+            }
         });
     }
 
@@ -102,7 +112,7 @@ class Blockchain {
     requestMessageOwnershipVerification(address) {
         return new Promise((resolve) => {
             // resolve with wallet address and message with time
-            resolve(`${address.toString('base64')}: ${new Date().getTime().toString().slice(0,-3)}:startRegistry`);
+            resolve(`${address.toString('base64')}:${new Date().getTime().toString().slice(0,-3)}:startRegistry`);
         });
     }
 
@@ -138,7 +148,12 @@ class Blockchain {
                 console.log("verified", isValid);
                 if (isValid) {
                     // let define the promise for adding the block
-                    let promiseBlock = await self._addBlock(new BlockClass.Block({star: star, owner: address}));
+                    let promiseBlock = await self._addBlock(new BlockClass.Block(
+                            {
+                                owner: address,
+                                data: star
+                            })
+                        );
                     // we call the method _addBlock using start parameters as block
                     resolve(promiseBlock);
                 } else {
@@ -218,26 +233,31 @@ class Blockchain {
      * 1. You should validate each block using `validateBlock`
      * 2. Each Block should check the with the previousBlockHash
      */
-    validateChain() {
+     validateChain() {
         let self = this;
         let errorLog = [];
+        let prevBlockHash = null;
         return new Promise(async (resolve, reject) => {
-            // loop through self.chain block elements and validate each of them
-            let i = 1;
-            do {
-                i = i + 1;
-                var block = self.chain[i];
-                // now we use validate() method to collect message, and we check previous block has the same has value
-                if (block.previousBlockHash === self.chain[i-1].hash) {
-                    // we collect the reject from promises
-                    errorLog.push(block.validate())
+            //Checking the chain for invalid blocks
+            for (let i = 0; i < await self.getChainHeight(); i++) {
+                let isValid = await self.chain[i].validate();
+                if (!isValid) {
+                   //We have found invalid block, push to the error log.
+                   errorLog.push(self.chain[i]);
+                   console.log(self.chain[i] + ' is not a valid block');
                 }
-            } while (i < self.chain.length+1);
-            resolve(errorLog);
-            reject(new Error('Not errors in the chain'));
+                else if (prevBlockHash !== self.chain[i].previousBlockHash) {
+                   //Checking second case where block hash of previous block
+                   //is mismatched
+                   errorLog.push(self.chain[i]);
+                   console.log(self.chain[i] + ' blockhash is invalid.');
+                }
+                //Update the previous block hash so we can compare the next iteration
+                prevBlockHash = self.chain[i].hash;
+            } 
+           resolve(errorLog);
         });
     }
-
 }
 
 module.exports.Blockchain = Blockchain;   
