@@ -40,10 +40,10 @@ You should see in your terminal a message indicating that the server is listenin
     Message in Postman:
     ```json
     {
-        "hash": null,
+        "hash": "a6bab81e354dd7d0894f7f2647b5fb1dd5b95cbd5648ecc21880e5534cea1df2",
         "height": 0,
         "body": "7b2264617461223a2247656e6573697320426c6f636b227d",
-        "time": 0,
+        "time": "1629140281",
         "previousBlockHash": null
     }   
     ```
@@ -72,8 +72,8 @@ You should see in your terminal a message indicating that the server is listenin
     ```json
         {
             "address":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn",
-            "signature":"HwXgZus8bwThx8Jj7hioYtEx9MmY6aLwUbeASYq+FMH8bv4umO8JxRWB5suut1FPetNe0a/m9nYFtk5Hgt9Kmqs=",
-            "message":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn: 1628155274:startRegistry",
+            "signature":"IGSRH8PzJRpom3YU03klzZ4soF5bvt/hHeDKNjmnGQ+fA4Q1nRMigDZdfDjvYUs52dpvRg1PoXUBodmg3Mgg5u0=",
+            "message":"1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn:1629140445:startRegistr",
             "star": {
                 "dec": "68° 52' 56.9",
                 "ra": "16h 29m 1.0s",
@@ -90,28 +90,12 @@ You should see in your terminal a message indicating that the server is listenin
     ```json
         [
             {
-                "star": {
+                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn",
+                "data": {
                     "dec": "68Â° 52' 56.9",
                     "ra": "16h 29m 1.0s",
                     "story": "Testing the story 2"
-                },
-                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
-            },
-            {
-                "star": {
-                    "dec": "68Â° 52' 56.9",
-                    "ra": "16h 29m 1.0s",
-                    "story": "Testing the story 2"
-                },
-                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
-            },
-            {
-                "star": {
-                    "dec": "68Â° 52' 56.9",
-                    "ra": "16h 29m 1.0s",
-                    "story": "Testing the story 2"
-                },
-                "owner": "1BnBZxjZS8FuvAmYryhNv9pjNrywuLCemn"
+                }
             }
         ]
     ```
