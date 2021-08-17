@@ -47,8 +47,8 @@ class Block {
             self.hash = auxHash;
 
             // Comparing if the hashes changed and returning result
-            console.log('aux hash: ' + auxHash.toString());
-            console.log('new hash: ' + newHash.toString());
+            //console.log('aux hash: ' + auxHash.toString());
+            //console.log('new hash: ' + newHash.toString());
             resolve(newHash === auxHash);
         });
     }

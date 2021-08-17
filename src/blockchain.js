@@ -93,8 +93,7 @@ class Blockchain {
             let chain_errors = await self.validateChain();
 
             if (chain_errors.length === 0) {
-                resolve(chain_errors);
-                //reject(chain_errors);
+                resolve(block);
             } else { 
                 resolve("Error found in the blockchain");
             }
@@ -244,13 +243,13 @@ class Blockchain {
                 if (!isValid) {
                    //We have found invalid block, push to the error log.
                    errorLog.push(self.chain[i]);
-                   console.log(self.chain[i] + ' is not a valid block');
+                   //console.log(self.chain[i] + ' is not a valid block');
                 }
                 else if (prevBlockHash !== self.chain[i].previousBlockHash) {
                    //Checking second case where block hash of previous block
                    //is mismatched
                    errorLog.push(self.chain[i]);
-                   console.log(self.chain[i] + ' blockhash is invalid.');
+                   //console.log(self.chain[i] + ' blockhash is invalid.');
                 }
                 //Update the previous block hash so we can compare the next iteration
                 prevBlockHash = self.chain[i].hash;
